@@ -144,6 +144,10 @@ conn.connect(function(err) {
             "2);", function (err, result) {
             if (err) throw err;
             console.log("Item inserted");
+            process.exit(1)
         });
+
     });
+
 });
+
