@@ -15,7 +15,7 @@ Open CMD or Terminal and execute next commands:
   
   Important before each test run, you must run the command `node setup-test-env.js`  
     
-# Exemple production  
+# Example production  
   Start prod  
     1. `node setup-prod-env.js`  
     2. `npm start`  
