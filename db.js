@@ -1,11 +1,11 @@
 const {Sequelize} = require("sequelize")
-const env = require("./config/env").getEnv()
+const env = require("./config/env")
 
 const sequelize = new Sequelize(env.database, env.user, env.password, {
     dialect: env.dialect,
     port: env.port,
     host: env.host,
-    logging: env.logging
+    logging: env.getEnv().logging
 })
 
 const User = require('./models/user')(sequelize)

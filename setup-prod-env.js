@@ -1,9 +1,10 @@
 let mysql2 = require("mysql2")
+const env = require("./config/env")
 
 let conn = mysql2.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Zxcvbnm658932147"
+    host: env.host,
+    user: env.user,
+    password: env.password
 })
 
 conn.connect(function(err) {
@@ -11,14 +12,14 @@ conn.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
 
-    conn.query("CREATE DATABASE IF NOT EXISTS task_db", function (err, result) {
+    conn.query("CREATE DATABASE IF NOT EXISTS " + env.database, function (err, result) {
         if (err) throw err;
         console.log("Database created");
         conn = mysql2.createConnection({
-            host: "localhost",
-            user: "root",
-            password: "Zxcvbnm658932147",
-            database: "task_db"
+            host: env.host,
+            user: env.user,
+            password: env.password,
+            database: env.database
         })
 
         conn.query("CREATE TABLE `user` (\n" +

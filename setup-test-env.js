@@ -1,28 +1,29 @@
 let mysql2 = require("mysql2")
+const env = require("./config/env")
 
 let conn = mysql2.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Zxcvbnm658932147"
+    host: env.host,
+    user: env.user,
+    password: env.password
 })
 
 conn.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
 
-    conn.query("DROP DATABASE IF EXISTS test_task_db", function (err, result) {
+    conn.query("DROP DATABASE IF EXISTS " + env.testDatabase, function (err, result) {
         if (err) throw err;
         console.log("Database dropped");
     });
 
-    conn.query("CREATE DATABASE test_task_db", function (err, result) {
+    conn.query("CREATE DATABASE " + env.testDatabase, function (err, result) {
         if (err) throw err;
-        console.log("Database created");
+        console.log("Database " + env.testDatabase +  " created");
         conn = mysql2.createConnection({
-            host: "localhost",
-            user: "root",
-            password: "Zxcvbnm658932147",
-            database: "test_task_db"
+            host: env.host,
+            user: env.user,
+            password: env.password,
+            database: env.testDatabase
         })
 
         conn.query("CREATE TABLE `user` (\n" +
@@ -66,7 +67,7 @@ conn.connect(function(err) {
             console.log("Session created");
         });
 
-        conn.query("INSERT INTO `test_task_db`.`user`\n" +
+        conn.query("INSERT INTO `" + env.testDatabase + "`.`user`\n" +
             "        (`name`,\n" +
             "            `email`,\n" +
             "            `password`,\n" +
@@ -80,7 +81,7 @@ conn.connect(function(err) {
             console.log("User inserted");
         });
 
-        conn.query("INSERT INTO `test_task_db`.`user`\n" +
+        conn.query("INSERT INTO `" + env.testDatabase + "`.`user`\n" +
             "        (`name`,\n" +
             "            `email`,\n" +
             "            `password`,\n" +
@@ -94,7 +95,7 @@ conn.connect(function(err) {
             console.log("User inserted");
         });
 
-        conn.query("INSERT INTO `test_task_db`.`session`\n" +
+        conn.query("INSERT INTO `" + env.testDatabase + "`.`session`\n" +
             "(`token`,\n" +
             "`userId`)\n" +
             "VALUES\n" +
@@ -104,7 +105,7 @@ conn.connect(function(err) {
             console.log("Session inserted");
         });
 
-        conn.query("INSERT INTO `test_task_db`.`item`\n" +
+        conn.query("INSERT INTO `" + env.testDatabase + "`.`item`\n" +
             "(`title`,\n" +
             "    `price`,\n" +
             "    `created_at`,\n" +
@@ -118,7 +119,7 @@ conn.connect(function(err) {
             console.log("Item inserted");
         });
 
-        conn.query("INSERT INTO `test_task_db`.`item`\n" +
+        conn.query("INSERT INTO `" + env.testDatabase + "`.`item`\n" +
             "(`title`,\n" +
             "    `price`,\n" +
             "    `created_at`,\n" +
@@ -132,7 +133,7 @@ conn.connect(function(err) {
             console.log("Item inserted");
         });
 
-        conn.query("INSERT INTO `test_task_db`.`item`\n" +
+        conn.query("INSERT INTO `" + env.testDatabase + "`.`item`\n" +
             "(`title`,\n" +
             "    `price`,\n" +
             "    `created_at`,\n" +
