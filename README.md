@@ -10,7 +10,7 @@ Open CMD or Terminal and execute next commands:
 If necessary, the MySQL port and other settings can be changed in the file `./config/env.js`
 
 # Example testing 
-![](demo.gif)
+![](demo.gif)  
   Start test  
     1. `node setup-test-env.js`  
     2. `npm test`
